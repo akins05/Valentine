@@ -71,14 +71,15 @@ canvas {
 <canvas id="fireworks"></canvas>
 
 <script>
-function showSurprise() {
+document.getElementById("yesBtn").addEventListener("click", function() {
   document.getElementById("question").style.display = "none";
   document.getElementById("surprise").style.display = "block";
   startFireworks();
-}
+});
 
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -86,7 +87,7 @@ let particles = [];
 
 function startFireworks() {
   setInterval(() => {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 40; i++) {
       particles.push({
         x: canvas.width / 2,
         y: canvas.height / 2,
@@ -96,7 +97,7 @@ function startFireworks() {
         speedY: (Math.random() - 0.5) * 8
       });
     }
-  }, 500);
+  }, 600);
   animate();
 }
 
@@ -104,11 +105,16 @@ function animate() {
   requestAnimationFrame(animate);
   ctx.fillStyle = "rgba(0,0,0,0.2)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   particles.forEach((p, index) => {
     p.x += p.speedX;
     p.y += p.speedY;
     p.radius *= 0.96;
-    if (p.radius < 0.5) particles.splice(index, 1);
+
+    if (p.radius < 0.5) {
+      particles.splice(index, 1);
+    }
+
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
     ctx.fillStyle = p.color;
@@ -116,6 +122,7 @@ function animate() {
   });
 }
 </script>
+
 
 </body>
 </html>
