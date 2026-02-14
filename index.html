@@ -15,15 +15,15 @@
     #yesBtn {background:#ff69b4;color:white;transform:scale(1.05);}
     #noBtn {background:white;color:#ff69b4;position:absolute;transition:0.5s;}
     
-    .surprise {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;background:radial-gradient(circle at center,#1a001a,#000);z-index:100;}
+    .surprise {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at center,#1a001a,#000);z-index:100;overflow-y:auto;}
     
-    .final {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:92%;color:white;z-index:10;}
+    .final {padding:20px 0;max-width:92%;margin:0 auto;text-align:center;color:white;position:relative;top:10vh;}
     .final img {width:170px;height:170px;border-radius:50%;border:7px solid #ff69b4;object-fit:cover;box-shadow:0 0 50px #ff1493;margin-bottom:25px;}
     .final h2 {font-family:'Dancing Script',cursive;font-size:48px;margin:20px 0 30px;color:#ff69b4;text-shadow:0 0 20px #ff1493;}
-    .final p {font-size:21px;line-height:1.75;max-width:100%;margin:15px auto;color:#ffebee;}
+    .final p {font-size:21px;line-height:1.8;margin:18px auto;color:#ffebee;}
     
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-    canvas{position:absolute;top:0;left:0;pointer-events:none;}
+    canvas{position:absolute;top:0;left:0;pointer-events:none;z-index:1;}
   </style>
 </head>
 <body>
@@ -39,38 +39,15 @@
     <canvas id="fireworks"></canvas>
     
     <div class="final">
-      <img src="https://i.postimg.cc/Bn1pB23n/8339deb3-7e3c-4976-995b-376966b15029.jpg" alt="My everything">
+      <img src="https://files.catbox.moe/9ou5i9.jpg" alt="My everything">
       <h2>Happy Valentine's Day,<br>my heart</h2>
-      <p>
-        My beautiful girl,<br>
-        You are the best part of me.<br>
-        The calm in my chaos.<br>
-        The smile that fixes my hardest days.
-      </p>
-      <p>
-        I'm sorry I couldn't wrap a gift for you today.<br>
-        But I'm wrapping my entire future around you.
-      </p>
-      <p>
-        Right now things aren't where I want them to be —<br>
-        but I promise you, this is not where we're staying.
-      </p>
-      <p>
-        One day soon, you'll get flowers on random Tuesdays,<br>
-        kisses on ordinary mornings,<br>
-        and surprises just because you woke up as mine.
-      </p>
-      <p>
-        Thank you for loving me while I build what we deserve.<br>
-        Thank you for being patient, for being my peace, for being my home.
-      </p>
-      <p>
-        I pray we celebrate a thousand more Valentine's together —<br>
-        and every single one will be sweeter than the last.
-      </p>
-      <p style="font-size:32px;margin-top:30px;">
-        I love you. So much.
-      </p>
+      <p>My beautiful girl,<br>You are the best part of me.<br>The calm in my chaos.<br>The smile that fixes my hardest days.</p>
+      <p>I'm sorry I couldn't wrap a gift for you today.<br>But I'm wrapping my entire future around you.</p>
+      <p>Right now things aren't where I want them to be —<br>but I promise you, this is not where we're staying.</p>
+      <p>One day soon, you'll get flowers on random Tuesdays,<br>kisses on ordinary mornings,<br>and surprises just because you woke up as mine.</p>
+      <p>Thank you for loving me while I build what we deserve.<br>Thank you for being patient, for being my peace, for being my home.</p>
+      <p>I pray we celebrate a thousand more Valentine's together —<br>and every single one will be sweeter than the last.</p>
+      <p style="font-size:32px;margin-top:40px;">I love you.<br>So much.</p>
     </div>
   </div>
 
@@ -80,7 +57,7 @@
     noBtn.addEventListener('touchstart', e => e.preventDefault());
     noBtn.addEventListener('click', e => e.preventDefault());
     noBtn.onclick = () => {
-      noBtn.style.transform = `translate(${Math.random()*400-200}px, ${Math.random()*600-300}px) rotate(${Math.random()*720-360}deg)`;
+      noBtn.style.transform = `translate(${Math.random()*300-150}px, ${Math.random()*500-250}px) rotate(${Math.random()*720-360}deg)`;
     };
 
     document.getElementById('yesBtn').onclick = () => {
@@ -89,13 +66,12 @@
         document.getElementById('question').style.display = 'none';
         document.getElementById('surprise').style.display = 'block';
         
-        // Insane fireworks for 10 seconds
-        const duration = 10 * 1000;
+        const duration = 12 * 1000;
         const end = Date.now() + duration;
         (function burst() {
-          confetti({particleCount:10,spread:80,origin:{y:0.6},colors:['#ff69b4','#ff9a9e','#fad0c4','#ffb6c1']});
-          confetti({particleCount:8,angle:60,spread:60,origin:{x:0},colors:['#ff1493','#ff69b4']});
-          confetti({particleCount:8,angle:120,spread:60,origin:{x:1},colors:['#ff1493','#ff69b4']});
+          confetti({particleCount:12,spread:90,origin:{y:0.55},colors:['#ff69b4','#ff9a9e','#fad0c4','#ffb6c1','#ff1493']});
+          confetti({particleCount:8,angle:60,spread:60,origin:{x:0}});
+          confetti({particleCount:8,angle:120,spread:60,origin:{x:1}});
           if (Date.now() < end) requestAnimationFrame(burst);
         }());
       }, 400);
