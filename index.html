@@ -5,164 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Will you be my Valentine?</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Pacifico&display=swap');
     
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      font-family: 'Pacifico', cursive;
-      touch-action: manipulation;
-    }
-
-    .container {
-      text-align: center;
-      padding: 20px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 48px;
-      color: #ff1b6b;
-      margin-bottom: 20px;
-      text-shadow: 0 4px 10px rgba(255,105,180,0.4);
-    }
-
-    p {
-      font-size: 24px;
-      color: #ff69b4;
-      margin-bottom: 50px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    button {
-      padding: 16px 32px;
-      font-size: 22px;
-      font-family: 'Pacifico', cursive;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    #yesBtn {
-      background: #ff69b4;
-      color: white;
-    }
-
-    #noBtn {
-      background: white;
-      color: #ff69b4;
-      position: absolute;
-      transition: all 0.4s;
-    }
-
-    #noBtn:hover {
-      transform: translateY(-100vh) rotate(360deg);
-    }
-
-    .surprise {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 100;
-      overflow: hidden;
-    }
-
-    .love-message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      z-index: 200;
-      animation: pulse 2s infinite;
-    }
-
-    .love-message img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 8px solid #ff69b4;
-      object-fit: cover;
-      margin-bottom: 30px;
-      box-shadow: 0 0 40px #ff69b4;
-    }
-
-    .love-message h2 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 42px;
-      margin: 20px 0;
-    }
-
-    .love-message p {
-      font-size: 28px;
-      max-width: 90%;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      50% { transform: translate(-50%, -50%) scale(1.05); }
-    }
-
-    canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
+    body {margin:0;height:100vh;background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ff9a9e);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Pacifico',cursive;color:#fff;}
+    .container {text-align:center;padding:20px;animation:float 6s ease-in-out infinite;}
+    h1 {font-family:'Dancing Script',cursive;font-size:52px;color:#ff1b6b;margin:0 0 15px;text-shadow:0 4px 15px rgba(255,27,107,0.4);}
+    p {font-size:23px;color:#ff69b4;margin-bottom:50px;}
+    button {padding:16px 36px;font-size:23px;border:none;border-radius:50px;cursor:pointer;margin:8px;font-family:'Pacifico',cursive;box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:0.3s;}
+    #yesBtn {background:#ff69b4;color:white;transform:scale(1.05);}
+    #noBtn {background:white;color:#ff69b4;position:absolute;transition:0.5s;}
+    
+    .surprise {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;background:radial-gradient(circle at center,#1a001a,#000);z-index:100;}
+    
+    .final {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:92%;color:white;z-index:10;}
+    .final img {width:170px;height:170px;border-radius:50%;border:7px solid #ff69b4;object-fit:cover;box-shadow:0 0 50px #ff1493;margin-bottom:25px;}
+    .final h2 {font-family:'Dancing Script',cursive;font-size:48px;margin:20px 0 30px;color:#ff69b4;text-shadow:0 0 20px #ff1493;}
+    .final p {font-size:21px;line-height:1.75;max-width:100%;margin:15px auto;color:#ffebee;}
+    
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+    canvas{position:absolute;top:0;left:0;pointer-events:none;}
   </style>
 </head>
 <body>
 
   <div class="container" id="question">
-    <h1>Will you be my Valentine? 💕</h1>
-    <p>Baby, my heart beats only for you...</p>
-    <div class="buttons">
-      <button id="yesBtn">YES!!! 🥰</button>
-      <button id="noBtn">No</button>
-    </div>
+    <h1>Will you be my Valentine?</h1>
+    <p>My beautiful girl… open this with me?</p>
+    <button id="yesBtn">Yes forever ♡</button>
+    <button id="noBtn">No</button>
   </div>
 
   <div class="surprise" id="surprise">
     <canvas id="fireworks"></canvas>
-    <div class="love-message">
-      <img src="https://imgur.com/a/MsIAowC" alt="My Love">
-      <h2>YES!!! I knew it! ❤️</h2>
+    
+    <div class="final">
+      <img src="https://i.postimg.cc/Bn1pB23n/8339deb3-7e3c-4976-995b-376966b15029.jpg" alt="My everything">
+      <h2>Happy Valentine's Day,<br>my heart</h2>
       <p>
-        You just made me the happiest person alive, baby.<br><br>
-        I love you more than words can ever express.<br>
-        You're my everything, my world, my forever Valentine.<br><br>
-        my beautiful girl. You are the best part of me. The calm in my chaos. The smile that fixes my hardest days.
-
-I want to say I’m sorry that I couldn’t get you a gift this Valentine’s. Not because you don’t deserve it. You deserve the world and more. Right now I may not be where I want to be, but I promise you this is not where I’m staying.
-
-Things will get better. And when they do, you won’t just enjoy Valentine’s Day. You’ll enjoy random Tuesdays. Ordinary mornings. Simple nights that turn into special memories. I will surprise you for no reason. I will celebrate you on regular days. I will make you feel chosen every single time.
-
-Thank you for loving me as I am. Thank you for being patient with me while I build what we deserve. I may not have wrapped a gift for you today, but I’m wrapping my future around you.
-
-Happy Valentine’s Day, my heart. I pray we get to celebrate many more together on this earth. And every one of them will be sweeter than the last.
-
-I love you.<br>
-        Yours forever and always,<br>
-        [Ishola] 💋
+        My beautiful girl,<br>
+        You are the best part of me.<br>
+        The calm in my chaos.<br>
+        The smile that fixes my hardest days.
+      </p>
+      <p>
+        I'm sorry I couldn't wrap a gift for you today.<br>
+        But I'm wrapping my entire future around you.
+      </p>
+      <p>
+        Right now things aren't where I want them to be —<br>
+        but I promise you, this is not where we're staying.
+      </p>
+      <p>
+        One day soon, you'll get flowers on random Tuesdays,<br>
+        kisses on ordinary mornings,<br>
+        and surprises just because you woke up as mine.
+      </p>
+      <p>
+        Thank you for loving me while I build what we deserve.<br>
+        Thank you for being patient, for being my peace, for being my home.
+      </p>
+      <p>
+        I pray we celebrate a thousand more Valentine's together —<br>
+        and every single one will be sweeter than the last.
+      </p>
+      <p style="font-size:32px;margin-top:30px;">
+        I love you. So much.
       </p>
     </div>
   </div>
@@ -170,49 +77,28 @@ I love you.<br>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script>
     const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const surprise = document.getElementById('surprise');
-    const question = document.getElementById('question');
+    noBtn.addEventListener('touchstart', e => e.preventDefault());
+    noBtn.addEventListener('click', e => e.preventDefault());
+    noBtn.onclick = () => {
+      noBtn.style.transform = `translate(${Math.random()*400-200}px, ${Math.random()*600-300}px) rotate(${Math.random()*720-360}deg)`;
+    };
 
-    // The "No" button runs away (impossible to click on mobile too!)
-    noBtn.addEventListener('touchstart', flyAway);
-    noBtn.addEventListener('mouseover', flyAway);
-
-    function flyAway() {
-      const x = Math.random() * (window.innerWidth - 150);
-      const y = Math.random() * (window.innerHeight - 100);
-      noBtn.style.left = x + 'px';
-      noBtn.style.top = y + 'px';
-    }
-
-    yesBtn.onclick = () => {
-      question.style.display = 'none';
-      surprise.style.display = 'block';
-
-      // Epic fireworks explosion
-      const duration = 8 * 1000;
-      const end = Date.now() + duration;
-
-      (function frame() {
-        confetti({
-          particleCount: 7,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: ['#ff69b4', '#ff9a9e', '#fad0c4', '#ffffff']
-        });
-        confetti({
-          particleCount: 7,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-          colors: ['#ff69b4', '#ff9a9e', '#fad0c4', '#ffffff']
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      }());
+    document.getElementById('yesBtn').onclick = () => {
+      document.getElementById('question').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('question').style.display = 'none';
+        document.getElementById('surprise').style.display = 'block';
+        
+        // Insane fireworks for 10 seconds
+        const duration = 10 * 1000;
+        const end = Date.now() + duration;
+        (function burst() {
+          confetti({particleCount:10,spread:80,origin:{y:0.6},colors:['#ff69b4','#ff9a9e','#fad0c4','#ffb6c1']});
+          confetti({particleCount:8,angle:60,spread:60,origin:{x:0},colors:['#ff1493','#ff69b4']});
+          confetti({particleCount:8,angle:120,spread:60,origin:{x:1},colors:['#ff1493','#ff69b4']});
+          if (Date.now() < end) requestAnimationFrame(burst);
+        }());
+      }, 400);
     };
   </script>
 </body>
