@@ -51,7 +51,7 @@ canvas {
 
 <div class="container" id="question">
   <h1>Will you be my Valentine? ❤️</h1>
-  <button class="yes" onclick="showSurprise()">Yes</button>
+  <button class="yes" id="yesBtn">Yes</button>
   <button class="no" onclick="alert('Wrong answer 😌 Try again.')">No</button>
 </div>
 
@@ -71,56 +71,63 @@ canvas {
 <canvas id="fireworks"></canvas>
 
 <script>
-document.getElementById("yesBtn").addEventListener("click", function() {
-  document.getElementById("question").style.display = "none";
-  document.getElementById("surprise").style.display = "block";
-  startFireworks();
-});
+window.onload = function() {
 
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
+  const yesBtn = document.getElementById("yesBtn");
+  const question = document.getElementById("question");
+  const surprise = document.getElementById("surprise");
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-let particles = [];
+  let particles = [];
 
-function startFireworks() {
-  setInterval(() => {
-    for (let i = 0; i < 40; i++) {
-      particles.push({
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        radius: Math.random() * 3 + 2,
-        color: "hsl(" + Math.random() * 360 + ", 100%, 50%)",
-        speedX: (Math.random() - 0.5) * 8,
-        speedY: (Math.random() - 0.5) * 8
-      });
-    }
-  }, 600);
-  animate();
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  particles.forEach((p, index) => {
-    p.x += p.speedX;
-    p.y += p.speedY;
-    p.radius *= 0.96;
-
-    if (p.radius < 0.5) {
-      particles.splice(index, 1);
-    }
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    ctx.fill();
+  yesBtn.addEventListener("click", function() {
+    question.style.display = "none";
+    surprise.style.display = "block";
+    startFireworks();
   });
-}
+
+  function startFireworks() {
+    setInterval(() => {
+      for (let i = 0; i < 40; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          radius: Math.random() * 3 + 2,
+          color: "hsl(" + Math.random() * 360 + ", 100%, 50%)",
+          speedX: (Math.random() - 0.5) * 8,
+          speedY: (Math.random() - 0.5) * 8
+        });
+      }
+    }, 600);
+    animate();
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.radius *= 0.96;
+
+      if (p.radius < 0.5) {
+        particles.splice(index, 1);
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+  }
+
+};
 </script>
 
 
